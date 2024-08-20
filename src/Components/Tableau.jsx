@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from "react-router-dom";
 
 const Tableau = () => {
   const [depenses, setDepenses] = useState([
@@ -9,7 +9,7 @@ const Tableau = () => {
   ]);
 
   const ajouterDepense = () => {
-    setDepenses([...depenses, { titre: '', montant: 0 }]);
+    setDepenses([...depenses, { titre: '', montant: 0}]);
   };
 
   const supprimerDepense = (index) => {
@@ -66,11 +66,11 @@ const Tableau = () => {
           ))}
         </tbody>
       </table>
-      
-      <button className='bg-blue-600 m-4 p-3 text-white' onClick={ajouterDepense}>
-        Ajouter une dépense
-      </button>
-    
+      <Link to="/ajoutdepense">
+        <button className='bg-blue-600 m-4 p-3 text-white' onClick={ajouterDepense}>
+          Ajouter une dépense
+        </button>
+      </Link>
     </div>
   );
 };

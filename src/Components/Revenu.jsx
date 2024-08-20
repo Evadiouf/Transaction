@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Outlet, Link } from "react-router-dom";
 
 const Revenu = () => {
   const [revenus, setRevenus] = useState([
@@ -7,15 +8,18 @@ const Revenu = () => {
     { titre: 'Bonus', montant: 50000 },
   ]);
 
+  
   const ajouterRevenu = () => {
     setRevenus([...revenus, { titre: '', montant: 0 }]);
   };
 
+  
   const supprimerRevenu = (index) => {
     const nouveauxRevenus = revenus.filter((_, i) => i !== index);
     setRevenus(nouveauxRevenus);
   };
 
+  
   const handleChange = (index, field, value) => {
     const nouveauxRevenus = revenus.map((revenu, i) =>
       i === index ? { ...revenu, [field]: value } : revenu
@@ -25,7 +29,7 @@ const Revenu = () => {
 
   return (
     <div>
-      <h3 className='py-4'>Listes Revenus</h3>
+      <h3 className='py-4'>Listes des Revenus</h3>
       <table className="border-collapse border border-slate-400 w-full">
         <thead>
           <tr>
@@ -65,11 +69,13 @@ const Revenu = () => {
           ))}
         </tbody>
       </table>
-      {/* <Link> */}
-      <button className='bg-blue-600 m-4 p-3 text-white' onClick={ajouterRevenu}>
-        Ajouter un revenu
-      </button>
-      {/* </Link */}
+      <Link to="/ajoutrevenu">
+        <button className='bg-blue-600 m-4 p-3 text-white'>
+          Ajouter un revenu
+        </button>
+      </Link>
+
+      <Outlet />
     </div>
   );
 };
